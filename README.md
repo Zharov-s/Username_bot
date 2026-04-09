@@ -29,6 +29,9 @@ Production-ready Telegram-бот на Python `3.11+` для **законной**
 ```text
 legal_username_bot/
 ├── .env.example
+├── deploy/
+│   └── systemd/
+│       └── username-bot.service
 ├── README.md
 ├── requirements.txt
 ├── run.py
@@ -539,3 +542,42 @@ python run.py
 4. отправьте один номер или `/lookup_file`
 
 Готово.
+
+---
+
+## Автозапуск через systemd
+
+Для Linux-сервера в проект уже добавлен шаблон:
+
+- `deploy/systemd/username-bot.service`
+
+Перед установкой замените в нём:
+
+- `<BOT_USER>` на пользователя Linux, от которого будет работать бот;
+- `<PROJECT_DIR>` на абсолютный путь к проекту, например `/opt/legal_username_bot`.
+
+Команды установки:
+
+```bash
+sudo cp deploy/systemd/username-bot.service /etc/systemd/system/username-bot.service
+sudo systemctl daemon-reload
+sudo systemctl enable username-bot
+sudo systemctl start username-bot
+sudo systemctl status username-bot
+```
+
+Полезные команды:
+
+```bash
+sudo journalctl -u username-bot -f
+sudo systemctl restart username-bot
+sudo systemctl stop username-bot
+```
+
+Рекомендуемый порядок деплоя:
+
+1. Склонировать проект на сервер.
+2. Создать `.env` с реальным `BOT_TOKEN`.
+3. Создать `.venv` и установить зависимости.
+4. Проверить ручной запуск `python run.py`.
+5. После этого включить `systemd`-сервис.

@@ -1,0 +1,17 @@
+[Unit]
+Description=Username Bot Telegram service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=<BOT_USER>
+Group=<BOT_USER>
+WorkingDirectory=<PROJECT_DIR>
+Environment=PYTHONUNBUFFERED=1
+ExecStart=<PROJECT_DIR>/.venv/bin/python run.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
