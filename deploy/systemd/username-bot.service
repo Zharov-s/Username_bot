@@ -5,11 +5,11 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=<BOT_USER>
-Group=<BOT_USER>
-WorkingDirectory=<PROJECT_DIR>
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/legal_username_bot
 Environment=PYTHONUNBUFFERED=1
-ExecStart=<PROJECT_DIR>/.venv/bin/python run.py
+ExecStart=/opt/legal_username_bot/.venv/bin/python run.py
 Restart=always
 RestartSec=5
 
