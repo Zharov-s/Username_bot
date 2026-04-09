@@ -1,0 +1,6 @@
+phone,username,nickname,consent_status
++79991234567,ivan_petrov,Иван Петров,opt_in
++447700900123,maria_data,Мария,opt_in
++12025550123,,Support Team,opt_in
++79990000000,hidden_user,Без согласия,no
+bad_phone,baduser,Некорректный,opt_in
